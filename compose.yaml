@@ -25,10 +25,10 @@ services:
       # - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
       # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
       # - FORGEJO__server__DOMAIN=forgejo.acquah.network 
-      # - FORGEJO__server__SSH_PORT=222
-
+      
+      - FORGEJO__server__SSH_PORT=222
       - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/
-      - FORGEJO__server__LFS_DISABLE_SSH=true
+      - FORGEJO__server__LFS_DISABLE_SSH=false
       - FORGEJO__server__LFS_START_SERVER=true
       - FORGEJO__migrations__ALLOWED_DOMAINS= *
       - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
