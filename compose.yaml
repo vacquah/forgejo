@@ -32,7 +32,7 @@ services:
       - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
       - FORGEJO__webhook__ALLOWED_HOST_LIST=loopback,private,*.acquah.network
       - FORGEJO__repository__DEFAULT_REPO_UNITS=repo.code,repo.releases,repo.issues,repo.pulls
-      - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
+      # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
       
       # Git timeout configuration
       # - FORGEJO__git.timeout__DEFAULT=3600
