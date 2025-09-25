@@ -23,6 +23,7 @@ services:
       # - FORGEJO__server__HTTP_PORT=3002
       # - FORGEJO__server__PROTOCOL=https
       # - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
+      # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
 
       - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/
       - FORGEJO__server__DOMAIN=forgejo.acquah.network
@@ -32,8 +33,7 @@ services:
       - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
       - FORGEJO__webhook__ALLOWED_HOST_LIST=loopback,private,*.acquah.network
       - FORGEJO__repository__DEFAULT_REPO_UNITS=repo.code,repo.releases,repo.issues,repo.pulls
-      # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
-      
+     
       # Git timeout configuration
       # - FORGEJO__git.timeout__DEFAULT=3600
       # - FORGEJO__git.timeout__MIGRATE=6000
