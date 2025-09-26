@@ -36,7 +36,12 @@ services:
       - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
       - FORGEJO__webhook__ALLOWED_HOST_LIST=loopback,private,*.acquah.network
       - FORGEJO__repository__DEFAULT_REPO_UNITS=repo.code,repo.releases,repo.issues,repo.pulls,repo.packages,repo.actions
-     
+      - FORGEJO__security_DISABLE_GIT_HOOKS=false
+      - FORGEJO__cron__ENABLED=true
+      - FORGEJO__cron__RUN_AT_START=true
+      - FORGEJO__cron.resync_all_hooks__ENABLED=true
+      - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
+       
       # Git timeout configuration
       # - FORGEJO__git.timeout__DEFAULT=3600
       # - FORGEJO__git.timeout__MIGRATE=6000
