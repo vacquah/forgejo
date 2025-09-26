@@ -8,8 +8,10 @@ services:
   server:
     image: codeberg.org/forgejo/forgejo:12-rootless
     container_name: forgejo
-    # user: "977:988"
+    user: "977:988"
     environment:
+      - USER_UID=977
+      - USER_GID=988
       - TZ=America/New_York
       # Database configuration
       - FORGEJO__database__DB_TYPE=postgres
