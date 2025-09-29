@@ -21,14 +21,6 @@ services:
       - FORGEJO__database__PASSWD=${FORGEJO_DATABASE_PASSWD}
       
       # Server configuration
-      # - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
-      # - FORGEJO__server__HTTP_PORT=3002
-      # - FORGEJO__server__PROTOCOL=https
-      # - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
-      # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
-      # - FORGEJO__server__DOMAIN=forgejo.acquah.network 
-      # - FORGEJO__server__LFS_DISABLE_SSH=false
-      
       - FORGEJO__server__SSH_PORT=222
       - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/
       - FORGEJO__server__LFS_START_SERVER=true
@@ -36,19 +28,6 @@ services:
       - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
       - FORGEJO__webhook__ALLOWED_HOST_LIST=loopback,private,*.acquah.network
       - FORGEJO__repository__DEFAULT_REPO_UNITS=repo.code,repo.releases,repo.issues,repo.pulls,repo.packages,repo.actions
-      - FORGEJO__security_DISABLE_GIT_HOOKS=false
-      - FORGEJO__cron__ENABLED=true
-      - FORGEJO__cron__RUN_AT_START=true
-      - FORGEJO__cron.resync_all_hooks__ENABLED=true
-      - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
-       
-      # Git timeout configuration
-      # - FORGEJO__git.timeout__DEFAULT=3600
-      # - FORGEJO__git.timeout__MIGRATE=6000
-      # - FORGEJO__git.timeout__MIRROR=3000
-      # - FORGEJO__git.timeout__CLONE=3000
-      # - FORGEJO__git.timeout__PULL=3000
-      # - FORGEJO__git.timeout__GC=600
       
       # Mailer configuration
       - FORGEJO__mailer__ENABLED=true
@@ -62,6 +41,28 @@ services:
       # Repository upload configuration
       - FORGEJO__repository.upload__FILE_MAX_SIZE=4095
       - FORGEJO__repository.upload__MAX_FILES=20
+
+      # - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
+      # - FORGEJO__server__HTTP_PORT=3002
+      # - FORGEJO__server__PROTOCOL=https
+      # - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
+      # - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
+      # - FORGEJO__server__DOMAIN=forgejo.acquah.network 
+      # - FORGEJO__server__LFS_DISABLE_SSH=false
+
+      # - FORGEJO__security_DISABLE_GIT_HOOKS=false
+      # - FORGEJO__cron__ENABLED=true
+      # - FORGEJO__cron__RUN_AT_START=true
+      # - FORGEJO__cron.resync_all_hooks__ENABLED=true
+      # - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
+
+      # Git timeout configuration
+      # - FORGEJO__git.timeout__DEFAULT=3600
+      # - FORGEJO__git.timeout__MIGRATE=6000
+      # - FORGEJO__git.timeout__MIRROR=3000
+      # - FORGEJO__git.timeout__CLONE=3000
+      # - FORGEJO__git.timeout__PULL=3000
+      # - FORGEJO__git.timeout__GC=600
       
     restart: always
     networks:
