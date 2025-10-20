@@ -13,7 +13,6 @@ services:
       # - USER_UID=977
       # - USER_GID=988
       - TZ=America/New_York
-      - GIT_DISCOVERY_ACROSS_FILESYSTEM=1
       
       # Database configuration
       - FORGEJO__database__DB_TYPE=postgres
@@ -71,8 +70,10 @@ services:
       - forgejo
       - frontend
     volumes:
-      - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
-      - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
+      - /mnt/unaspro/docker/forgejo/data:/home/git/.local/share/forgejo
+      - /mnt/unaspro/docker/forgejo/conf:/home/git/.config/forgejo
+      # - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
+      # - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
       # - /etc/timezone:/etc/timezone:ro
       # - /etc/localtime:/etc/localtime:ro
     ports:
