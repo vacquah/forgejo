@@ -13,6 +13,8 @@ services:
       # - USER_UID=977
       # - USER_GID=988
       - TZ=America/New_York
+      - GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+      
       # Database configuration
       - FORGEJO__database__DB_TYPE=postgres
       - FORGEJO__database__HOST=10.1.20.8:5432
