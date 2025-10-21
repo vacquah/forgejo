@@ -34,9 +34,7 @@ services:
       - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
       - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
       - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
-      
-      # - FORGEJO__server__HTTP_PORT=3002
-      # - FORGEJO__server__DOMAIN=forgejo.acquah.network 
+      - FORGEJO__server__DOMAIN=forgejo.acquah.network 
       # - FORGEJO__server__LFS_DISABLE_SSH=false
       
       # Mailer configuration
@@ -80,7 +78,7 @@ services:
       # - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
 
     ports:
-   #   - "3002:3000"     # 3000 in use by grafana docker container - remove from here. handled by traefik
+      - "3002:3000"     # 3000 in use by grafana docker container -
       - "222:2222"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002"]
