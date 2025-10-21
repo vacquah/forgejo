@@ -50,11 +50,11 @@ services:
       - FORGEJO__repository.upload__FILE_MAX_SIZE=4095
       - FORGEJO__repository.upload__MAX_FILES=20
 
-      # - FORGEJO__security_DISABLE_GIT_HOOKS=false
-      # - FORGEJO__cron__ENABLED=true
-      # - FORGEJO__cron__RUN_AT_START=true
-      # - FORGEJO__cron.resync_all_hooks__ENABLED=true
-      # - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
+      - FORGEJO__security_DISABLE_GIT_HOOKS=false
+      - FORGEJO__cron__ENABLED=true
+      - FORGEJO__cron__RUN_AT_START=true
+      - FORGEJO__cron.resync_all_hooks__ENABLED=true
+      - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
 
       # Git timeout configuration
       # - FORGEJO__git.timeout__DEFAULT=3600
