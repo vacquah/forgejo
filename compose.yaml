@@ -8,7 +8,7 @@ services:
   server:
     image: codeberg.org/forgejo/forgejo:13.0.1-rootless
     container_name: forgejo
-    # user: "977:988"
+    user: "977:988"
     environment:
       # - USER_UID=977
       # - USER_GID=988
@@ -69,14 +69,10 @@ services:
       - forgejo
       - frontend
     volumes:
-      - /mnt/unaspro/docker/forgejo/data:/home/git/.local/share/forgejo
-      - /mnt/unaspro/docker/forgejo/conf:/home/git/.config/forgejo
+      - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
+      - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      
-      # - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
-      # - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
-
     ports:
       - "3002:3000"     # 3000 in use by grafana docker container -
       - "222:2222"
