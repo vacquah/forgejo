@@ -1,8 +1,8 @@
-networks:
-  forgejo:
-    external: false
-  frontend: 
-    external: true  
+# networks:
+#   forgejo:
+#     external: false
+#   frontend: 
+#     external: true  
 
 services:
   server:
@@ -65,9 +65,11 @@ services:
       - FORGEJO__git.timeout__GC=600
       
     restart: unless-stopped
-    networks:
-      - forgejo
-      - frontend
+    
+    # networks:
+    #   - forgejo
+    #   - frontend
+    
     volumes:
       - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
       - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
