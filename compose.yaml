@@ -57,12 +57,12 @@ services:
       - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
 
       # Git timeout configuration
-      # - FORGEJO__git.timeout__DEFAULT=3600
-      # - FORGEJO__git.timeout__MIGRATE=6000
-      # - FORGEJO__git.timeout__MIRROR=3000
-      # - FORGEJO__git.timeout__CLONE=3000
-      # - FORGEJO__git.timeout__PULL=3000
-      # - FORGEJO__git.timeout__GC=600
+      - FORGEJO__git.timeout__DEFAULT=3600
+      - FORGEJO__git.timeout__MIGRATE=6000
+      - FORGEJO__git.timeout__MIRROR=3000
+      - FORGEJO__git.timeout__CLONE=3000
+      - FORGEJO__git.timeout__PULL=3000
+      - FORGEJO__git.timeout__GC=600
       
     restart: always
     networks:
