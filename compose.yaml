@@ -25,7 +25,8 @@ services:
       - FORGEJO__server__SSH_PORT=222
       - FORGEJO__server__LFS_START_SERVER=true
       - FORGEJO__server__PROTOCOL=http
-      - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
+      - FORGEJO__server__SSH_DOMAIN=10.1.20.4
+      # - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
       - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
       # - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/
       - FORGEJO__server__DOMAIN=forgejo.acquah.network 
