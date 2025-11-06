@@ -28,7 +28,7 @@ services:
       - FORGEJO__server__SSH_DOMAIN=10.1.20.4
       # - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
       - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
-      # - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/   -- this still works in komodo. use this for komodo git setup
+      # - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/   -- works in komodo. use this for traefik only  to ensure its available when https is not )
       - FORGEJO__server__DOMAIN=forgejo.acquah.network 
       # - FORGEJO__server__LFS_DISABLE_SSH=false
       
