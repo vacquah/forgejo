@@ -57,7 +57,7 @@ services:
       FORGEJO__cron__RUN_AT_START: true
       FORGEJO__cron.resync_all_hooks__ENABLED: true
       FORGEJO__cron.resync_all_hooks__RUN_AT_START: true
-      FORGEJO__cron.resync_all_hooks__SCHEDULE: @every 24h
+      FORGEJO__cron.resync_all_hooks__SCHEDULE: "@every 24h"
       FORGEJO__cron.delete_old_system_notices__ENABLED: true
       FORGEJO__cron.delete_old_system_notices__SCHEDULE: "@every 168h"
       
