@@ -1,89 +1,85 @@
-# networks:
-#   forgejo:
-#     external: false
-#   frontend: 
-#     external: true  
-
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:13.0.2-rootless
+    image: codeberg.org/forgejo/forgejo:13.0.2
     container_name: forgejo
-    user: "977:988"
-    environment:
-      # - USER_UID=977
-      # - USER_GID=988
-      - TZ=America/New_York
-      
-      # Database configuration
-      - FORGEJO__database__DB_TYPE=postgres
-      - FORGEJO__database__HOST=10.1.20.8:5432
-      - FORGEJO__database__NAME=forgejo
-      - FORGEJO__database__USER=forgejo
-      - FORGEJO__database__PASSWD=${FORGEJO_DATABASE_PASSWD}
-      
-      # Server configuration
-      - FORGEJO__server__SSH_PORT=222
-      - FORGEJO__server__LFS_START_SERVER=true
-      - FORGEJO__server__PROTOCOL=http
-      # - FORGEJO__server__SSH_DOMAIN=10.1.20.4
-      - FORGEJO__server__SSH_DOMAIN=forgejo.acquah.network
-      - FORGEJO__server__ROOT_URL=https://forgejo.acquah.network
-      # - FORGEJO__server__ROOT_URL=http://10.1.20.4:3002/   -- works in komodo. use this for traefik only  to ensure its available when https is not )
-      - FORGEJO__server__DOMAIN=forgejo.acquah.network 
-      # - FORGEJO__server__LFS_DISABLE_SSH=false
-      
-      - FORGEJO__migrations__ALLOWED_DOMAINS= *
-      - FORGEJO__migrations__ALLOW_LOCALNETWORKS=true
-      - FORGEJO__webhook__ALLOWED_HOST_LIST=loopback,private,*.acquah.network
-      - FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES=10.1.20.10
-      - FORGEJO__security_DISABLE_GIT_HOOKS=false
-
-      # Mailer configuration
-      - FORGEJO__mailer__ENABLED=true
-      - FORGEJO__mailer__PROTOCOL=smtp+starttls
-      - FORGEJO__mailer__SMTP_ADDR=smtp.mail.me.com
-      - FORGEJO__mailer__SMTP_PORT=587
-      - FORGEJO__mailer__FROM=Forgejo Git <noreply@acquah.email>
-      - FORGEJO__mailer__USER=vacquah@mac.com
-      - FORGEJO__mailer__PASSWD=${FORGEJO_MAILER_PASSWD}
-      
-      # Repository configuration
-      - FORGEJO__repository.upload__FILE_MAX_SIZE=4095
-      - FORGEJO__repository.upload__MAX_FILES=20
-      - FORGEJO__repository__DEFAULT_REPO_UNITS=repo.code,repo.releases,repo.issues,repo.pulls,repo.packages,repo.actions
-      
-      - FORGEJO__cron__ENABLED=true
-      - FORGEJO__cron__RUN_AT_START=true
-      - FORGEJO__cron.resync_all_hooks__ENABLED=true
-      - FORGEJO__cron.resync_all_hooks__RUN_AT_START=true
-      - FORGEJO__cron.delete_old_system_notices__ENABLED=true
-      - FORGEJO__cron.delete_old_system_notice__RUN_AT_START=true
-      - FORGEJO__cron.delete_old_system_notice__SCHEDULE = @every 168h
-      
-      # Git timeout configuration
-      - FORGEJO__git.timeout__DEFAULT=3600
-      - FORGEJO__git.timeout__MIGRATE=6000
-      - FORGEJO__git.timeout__MIRROR=3000
-      - FORGEJO__git.timeout__CLONE=3000
-      - FORGEJO__git.timeout__PULL=3000
-      - FORGEJO__git.timeout__GC=600
-      
     restart: unless-stopped
+    user: "977:988"
     
-    # networks:
-    #   - forgejo
-    #   - frontend
+    environment:
+       TZ: America/New_York
+       
+      # --- UID/GID mapping for NAS permissions ---
+      USER_UID: 977
+      USER_GID: 988
+     
+      # --- Database configuration ---
+      FORGEJO__database__DB_TYPE: postgres
+      FORGEJO__database__HOST: 10.1.20.8:5432
+      FORGEJO__database__NAME: forgejo
+      FORGEJO__database__USER: forgejo
+      FORGEJO__database__PASSWD: ${FORGEJO_DATABASE_PASSWD}
+      
+      # --- Server configuration ---
+      FORGEJO__server__DOMAIN: forgejo.acquah.network
+      FORGEJO__server__ROOT_URL: https://forgejo.acquah.network
+      FORGEJO__server__PROTOCOL: http
+      FORGEJO__server__SSH_DOMAIN: forgejo.acquah.network
+      FORGEJO__server__SSH_PORT: 222
+      FORGEJO__server__LFS_START_SERVER: true
+
+      # FORGEJO__server__SSH_DOMAIN: 10.1.20.4
+      # FORGEJO__server__ROOT_URL: http://10.1.20.4:3002/   -- works in komodo. use this for traefik only  to ensure its available when https is not )
+      # FORGEJO__server__LFS_DISABLE_SSH: false
+      
+     # --- Security & access ---
+      FORGEJO__migrations__ALLOWED_DOMAINS: "*"
+      FORGEJO__migrations__ALLOW_LOCALNETWORKS: true
+      FORGEJO__webhook__ALLOWED_HOST_LIST: loopback,private,*.acquah.network
+      FORGEJO__security__REVERSE_PROXY_TRUSTED_PROXIES: 10.1.20.10
+      FORGEJO__security__DISABLE_GIT_HOOKS: false
+
+      # --- Mailer configuration ---
+      FORGEJO__mailer__ENABLED: true
+      FORGEJO__mailer__PROTOCOL: smtp+starttls
+      FORGEJO__mailer__SMTP_ADDR: smtp.mail.me.com
+      FORGEJO__mailer__SMTP_PORT: 587
+      FORGEJO__mailer__FROM: Forgejo Git <noreply@acquah.email>
+      FORGEJO__mailer__USER: vacquah@mac.com
+      FORGEJO__mailer__PASSWD: ${FORGEJO_MAILER_PASSWD}
+      
+      # --- Repository configuration ---
+      FORGEJO__repository.upload__FILE_MAX_SIZE: 4095
+      FORGEJO__repository.upload__MAX_FILES: 20
+      FORGEJO__repository__DEFAULT_REPO_UNITS: repo.code,repo.releases,repo.issues,repo.pulls,repo.packages,repo.actions
+
+      # --- Cron jobs ---
+      FORGEJO__cron__ENABLED: true
+      FORGEJO__cron__RUN_AT_START: true
+      FORGEJO__cron.resync_all_hooks__ENABLED: true
+      FORGEJO__cron.resync_all_hooks__RUN_AT_START: true
+      FORGEJO__cron.resync_all_hooks__SCHEDULE: @every 24h
+      FORGEJO__cron.delete_old_system_notices__ENABLED: true
+      FORGEJO__cron.delete_old_system_notices__SCHEDULE: "@every 168h"
+      
+      # --- Git timeouts ---
+      FORGEJO__git.timeout__DEFAULT: 3600
+      FORGEJO__git.timeout__MIGRATE: 6000
+      FORGEJO__git.timeout__MIRROR: 3000
+      FORGEJO__git.timeout__CLONE: 3000
+      FORGEJO__git.timeout__PULL: 3000
+      FORGEJO__git.timeout__GC: 600
     
     volumes:
-      - /mnt/unaspro/docker/forgejo/data:/var/lib/gitea
-      - /mnt/unaspro/docker/forgejo/conf:/etc/gitea
+      - /mnt/unaspro/docker/forgejo/data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+      
     ports:
       - "3002:3000"     # 3000 in use by grafana docker container -
-      - "222:2222"
+      - "222:22"
+      
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3002"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
       timeout: 10s
       retries: 3
