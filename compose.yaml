@@ -3,7 +3,7 @@ services:
     image: codeberg.org/forgejo/forgejo:13.0.2
     container_name: forgejo
     restart: unless-stopped
-    user: "977:988"
+    # user: "977:988"
     
     environment:
       TZ: America/New_York
